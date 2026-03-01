@@ -1,7 +1,15 @@
 'use server'
 import { httpClient } from "@/lib/axios/httpClient"
 
+interface IDoctor {
+    id: number;
+    name: string;
+    specialization: string;
+    experience: number;
+    rating: number;
+}
+
 export const getDoctors = async () => {
-    const getDoctors = await httpClient.get('/doctors')
+    const getDoctors = await httpClient.get<IDoctor[]>('/doctors')
     return getDoctors
 }
