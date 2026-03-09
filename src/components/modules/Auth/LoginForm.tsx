@@ -14,10 +14,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 interface LoginFormProps {
-    redirectPath?: string;
+    redirectPath ?: string;
 }
 
-const LoginForm = ({ redirectPath } : LoginFormProps) => {
+const LoginForm = ({ redirectPath }: LoginFormProps) => {
     // const queryClient = useQueryClient();
 
     const [serverError, setServerError] = useState<string | null>(null);
