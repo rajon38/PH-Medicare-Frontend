@@ -7,7 +7,7 @@ import DataTable from "@/components/shared/table/DataTable";
 import { doctorColumns } from "./doctorsColumns";
 
 
-const DoctorsTable = () => {
+const DoctorsTable = ({queryString, queryParamsObjects}: { queryString: string; queryParamsObjects: { [key: string]: string | string[] | undefined } }) => {
 
     // const doctorColumns: ColumnDef<IDoctor>[] =[
     //     { accessorKey: 'name', header: 'Name' },
@@ -17,8 +17,8 @@ const DoctorsTable = () => {
     // ]
 
     const { data: doctorDataResponse , isLoading } = useQuery({
-        queryKey: ['doctors'],
-        queryFn: getDoctors
+        queryKey: ['doctors', queryParamsObjects],
+        queryFn: () => getDoctors(queryString)
     })
 
     const { data: doctors } = doctorDataResponse! || [] ;
