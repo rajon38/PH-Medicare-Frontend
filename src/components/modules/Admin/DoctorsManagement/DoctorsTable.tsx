@@ -1,25 +1,20 @@
 'use client'
-import {
-    ColumnDef,
-    flexRender,
-    getCoreRowModel,
-    useReactTable
-} from "@tanstack/react-table";
+
 import { getDoctors } from "@/services/doctor.services"
 import { useQuery } from "@tanstack/react-query"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow,  } from "@/components/ui/table";
 import { IDoctor } from "@/types/doctor.types";
 import DataTable from "@/components/shared/table/DataTable";
+import { doctorColumns } from "./doctorsColumns";
 
 
 const DoctorsTable = () => {
 
-    const doctorColumns: ColumnDef<IDoctor>[] =[
-        { accessorKey: 'name', header: 'Name' },
-        //{ accessorKey: 'specialization', header: 'Specialization' },
-        { accessorKey: 'experience', header: 'Experience (years)' },
-        //{ accessorKey: 'rating', header: 'Rating' },
-    ]
+    // const doctorColumns: ColumnDef<IDoctor>[] =[
+    //     { accessorKey: 'name', header: 'Name' },
+    //     //{ accessorKey: 'specialization', header: 'Specialization' },
+    //     { accessorKey: 'experience', header: 'Experience (years)' },
+    //     //{ accessorKey: 'rating', header: 'Rating' },
+    // ]
 
     const { data: doctorDataResponse , isLoading } = useQuery({
         queryKey: ['doctors'],
