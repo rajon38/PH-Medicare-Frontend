@@ -1,4 +1,3 @@
-
 import DoctorsList from "@/components/modules/Consultation/DoctorList";
 import { getDoctors } from "@/services/doctor.services";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
@@ -8,7 +7,7 @@ const ConsultationPage = async () => {
 
   await queryClient.prefetchQuery({
     queryKey: ["doctors"],
-    queryFn: getDoctors,
+    queryFn: () => getDoctors,
   });
  return (
    // Neat! Serialization is now as easy as passing props.

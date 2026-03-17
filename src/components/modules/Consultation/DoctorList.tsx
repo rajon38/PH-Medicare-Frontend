@@ -1,31 +1,27 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-'use client'
-import { getDoctors } from "@/app/(commonLayout)/consultation/_actions";
+"use client";
+import { getDoctors } from "@/services/doctor.services";
 import { useQuery } from "@tanstack/react-query";
 
 const DoctorsList = () => {
-    const { data: doctorData } = useQuery({
-    queryKey: ['doctors'],
-    queryFn: () => getDoctors(),
-  })
+     const { data : doctorData } = useQuery({
+       queryKey: ["doctors"],
+       queryFn: () => getDoctors(""),
+     });
 
-//   const {data: nonPrefactchedData} = useQuery({
-//     queryKey: ['doctors-non-prefetched'],
-//     queryFn: () => getDoctors(),
-//   })
 
-//   console.log(nonPrefactchedData);
+     //non-prefetched query example
+    //  const {data : nonPrefetchedData} = useQuery({
+    //    queryKey: ["doctors-non-prefetched"],
+    //    queryFn: () => getDoctors(),
+    //  });
 
-  console.log(doctorData);
-    return (
-        <div>
-            {doctorData?.data?.map((doctor: any) => (
-                <div key={doctor.id}>
-                    <h2>{doctor.name}</h2>
-                </div>
-            ))}
-        </div>
-    );
-};
 
-export default DoctorsList;
+  return (
+    <div>{doctorData!.data?.map((doctor: any) => (
+      <div key={doctor.id}>{doctor.name}</div>
+    ))}</div>
+  )
+}
+
+export default DoctorsList
